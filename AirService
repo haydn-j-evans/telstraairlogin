@@ -1,0 +1,37 @@
+#
+ # description: Telstra Air Login Script
+ #
+ # Get function from functions Linux library
+ . /etc/init.d/functions
+ # Start the service test
+ start() {
+#Location of the Script
+ /var/gitrepo/telstraair/bashscript.sh
+ echo "Script was running successfully"
+ }
+ # Restart the service AirService
+ stop() {
+# Use name to kill the process
+ pkill AirScript
+ echo "Process terminated successfully"
+ }
+ ### main logic ###
+ case "$1" in
+ start)
+ start
+ ;;
+ stop)
+ stop
+ ;;
+ status)
+ status FOO
+ ;;
+ restart|reload|condrestart)
+ stop
+ start
+ ;;
+ *)
+ echo $"Usage: $0 {start|stop|restart|reload|status}"
+ exit 1
+ esac
+ exit 
