@@ -7,7 +7,7 @@
  start() {
 #Location of the Script
  /var/gitrepo/telstraair/bashscript.sh
- echo "Script was running successfully"
+ echo "Script is running successfully"
  }
  # Restart the service AirService
  stop() {
