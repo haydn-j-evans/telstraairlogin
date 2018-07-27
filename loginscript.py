@@ -4,7 +4,6 @@ import requests
 
 username = "USERNAME@wifi.telstra.com"
 password = "PASSWORD"
-wifiadapter = "wlan0"
 wifiap = "Telstra Air"
 testurl = "http://captive.apple.com/hotspot-detect.html"
 redirecturl = "http://msftconnecttest.com/redirect"
