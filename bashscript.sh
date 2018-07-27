@@ -54,6 +54,7 @@ echo "Connecting..."
 connect=$(wget -qO- --timeout=10 --keep-session-cookies \
 --post-data "UserName=$username&Password=$password&_rememberMe=on" \
 "https://telstra.portal.fon.com/jcp/telstra?res=login&nasid=$nasid&uamip=$ipaddr&uamport=$port&mac=$macaddr&challenge=$challenge")
+echo "$connect"
 
 if $(echo "$connect" | grep -q "You&#39;re connected!"); then
 echo "Connected!"
