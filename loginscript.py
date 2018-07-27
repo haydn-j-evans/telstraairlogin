@@ -8,6 +8,7 @@ wifiadapter = "wlan0"
 wifiap = "Telstra Air"
 testurl = "http://captive.apple.com/hotspot-detect.html"
 redirecturl = "http://msftconnecttest.com/redirect"
+loginurl = "https://telstra.portal.fon.com/jcp/telstra?res=login"
 
 # Check if connected to the internet
 
@@ -41,11 +42,11 @@ if nasidindex  == 5:
 
 #Find each string end location based on index_start and expected length of value
 	
-nasidindex_end = nasidindex + 
-ipaddrindex_end = ipaddrindex + 
-portindex_end = portindex + 
-macaddrindex_end = macaddrindex + 
-challengeindex_end = challengeindex + 
+nasidindex_end = nasidindex + 10
+ipaddrindex_end = ipaddrindex + 10
+portindex_end = portindex + 4
+macaddrindex_end = macaddrindex + 10
+challengeindex_end = challengeindex + 10
 
 #Pull each value from URL based on start and end of strings
 	
@@ -55,7 +56,13 @@ port = loginurl[portindex_start:portindex_end]
 macaddr = loginurl[macaddrindex_start:macaddrindex_end]
 challenge = loginurl[challengeindex_start:challengeindex_end]
 
-posturl = https://telstra.portal.fon.com/jcp/telstra?res=login&nasid=
+#Create Login URL based on the information gathered
 
-l = requests.post(
+posturl = loginurl + "&nasid=" + nasid + "&uamip=" + ipaddr + "&uamport=" + port + "&mac=" + macaddr + "&challenge=" + challenge
+
+#Create POST variables
+
+postdata = {'Username': username, 'Password': password, '_rememberMe': "on"}
+
+l = requests.post(posturl, data = postdata)
 
