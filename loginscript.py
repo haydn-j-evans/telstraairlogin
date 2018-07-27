@@ -19,11 +19,12 @@ if successcheck.find('success') == -1:
 	print("Already Connected to the Internet!")
 	exit()
 
-# Pull the URL from the redirect portal using standard portal redirection	
+# Pull the URL and session cookies from the redirect portal using standard portal redirection	
 	
 s = requests.get(redirecturl)
 
 loginurl = s.url
+logincookies = s.cookies
 
 #Find the string start locations for the additional variables needed for our POST login
 
@@ -44,7 +45,7 @@ if nasidindex  == 5:
 nasidindex_end = nasidindex + 10
 ipaddrindex_end = ipaddrindex + 10
 portindex_end = portindex + 4
-macaddrindex_end = macaddrindex + 10
+macaddrindex_end = macaddrindex + 16
 challengeindex_end = challengeindex + 10
 
 #Pull each value from URL based on start and end of strings
@@ -63,5 +64,5 @@ posturl = loginurl + "&nasid=" + nasid + "&uamip=" + ipaddr + "&uamport=" + port
 
 postdata = {'Username': username, 'Password': password, '_rememberMe': "on"}
 
-l = requests.post(posturl, data = postdata)
+l = requests.post(posturl, data = postdata, cookies = logincookies)
 
